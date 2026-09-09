@@ -1,0 +1,116 @@
+#include <iostream>
+using namespace std;
+
+class clscalculator
+{
+private:
+	float result=0;
+	float lastnum=0;
+	string lastoperation = "clear";
+	float previousresult=0;
+	bool  iszero(int num)
+	{
+		return(num == 0);
+	}
+public:
+
+void clear()
+{
+	lastnum = 0;
+	previousresult = 0;
+	lastoperation = "clear";
+	result = 0;
+	
+}
+float getfinalresult()
+{
+	return result;
+}
+void cancellastoperation()
+{
+	result = previousresult;
+	lastnum = 0;
+	
+	lastoperation = "canceling last operation";
+}
+void printresult()
+{
+	cout<<"result ";
+    cout<<"after"<<lastoperation<<" "<<lastnum<<" is "<<result<<endl;
+	
+	
+}
+void add(int num)
+{
+	lastnum = num;
+	previousresult = result;
+	lastoperation = "adding";
+	result += num;
+	
+}
+void subtract(int num)
+{
+
+	lastnum = num;
+	previousresult = result;
+	lastoperation = "subtracting";
+	result -= num;
+
+}
+void multiply(int num)
+{
+	lastnum = num;
+	previousresult = result;
+	lastoperation = "multiplying";
+	result *= num;
+
+}
+void divide(int num)
+{
+
+	if (iszero(num))
+	{
+		num = 1;
+
+	}
+	lastnum = num;
+	previousresult = result;
+	lastoperation = "dividing";
+	result /= num;
+	
+}
+
+
+};
+int main()
+{
+	clscalculator calculator1;
+
+	calculator1.clear();
+
+	calculator1.add(10);
+	calculator1.printresult();
+
+	calculator1.add(100);
+	calculator1.printresult();
+
+	calculator1.subtract(20);
+	calculator1.printresult();
+
+	calculator1.divide(0);
+	calculator1.printresult();
+
+	calculator1.divide(2);
+	calculator1.printresult();
+
+
+	calculator1.multiply(3);
+	calculator1.printresult();
+
+	calculator1.clear();
+	calculator1.printresult();
+
+
+	return 0;
+}
+
