@@ -1,0 +1,184 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class clsperson
+{
+private:
+    int ID;
+    string FirstName;
+    string LastName;
+    string email;
+    string phone;
+public:
+    clsperson(int id, const string& first, const string& last, const string& mail, const string& mobile) :
+        ID(id), FirstName(first), LastName(last), email(mail), phone(mobile)
+    {
+
+    }
+    int getID() const
+    {
+        return ID;
+    }
+    void  setfirstname(const string& first)
+    {
+        FirstName = first;
+    }
+    string getfirstname() const
+    {
+        return FirstName;
+    }
+    void setlastname(const string& last)
+    {
+        LastName = last;
+    }
+    string getlastname() const
+    {
+        return LastName;
+    }
+
+    string getfullname() const
+    {
+        return FirstName + " " + LastName;
+    }
+    void setemail(const string& mail)
+    {
+        email = mail;
+    }
+    string getemail() const
+    {
+        return email;
+    }
+    void setphone(const string& mobile)
+    {
+        phone = mobile;
+    }
+    string getphone() const
+    {
+        return phone;
+    }
+    void print() const
+    {
+       cout << "\n___________________";
+       cout << "\nID : " << getID();
+       cout << "\nFirstName : " << getfirstname();
+       cout << "\nLastName : " << getlastname();
+       cout << "\nFull Name : " << getfullname();
+       cout << "\nEmail : " << getemail();
+       cout << "\nPhone : " << getphone();
+        cout << "\n___________________\n";
+        
+
+    }
+    void sendemail(const string& subject, const string& message) const
+    {
+        cout << "the following message sent successfully to email :" << email;
+        cout << "\nSubject : " << subject;
+        cout << "\nBody : " << message << "\n";
+
+    }
+    void sendSMS(const string& message) const
+    {
+        cout << "\nthe following SMS sent successfully to phone :"<<getphone()<<endl;
+        cout << message << endl << endl;
+    }
+
+};
+class clsemployee : public clsperson
+{
+    private:
+        string department;
+        string title;
+        float salary;
+        public:
+    clsemployee(int id, const string& first, const string& last, const string& mail, const string& mobile ,string  dep,string titl,float sal) :
+        clsperson(id, first, last, mail, mobile)
+    {
+     department=dep;
+     title=titl;
+     salary=sal;
+    }
+    void setdepartment(const string& dep)
+    {
+        department = dep;
+    }
+    string getdepartment() const
+    {
+        return department;
+    }
+    void settitle(const string& titl)
+    {
+        title = titl;
+    }
+    string gettitle() const
+    {
+        return title;
+    }
+    void setsalary(float sal)
+    {
+        salary = sal;
+    }
+    float getsalary() const
+    {
+        return salary;
+    }
+    void print() const
+    {
+        cout << "\nInfo:";
+        cout << "\n___________________";
+        cout << "\nID : " << getID();
+        cout << "\nFirstName : " << getfirstname();
+        cout << "\nLastName : " << getlastname();
+        cout << "\nFull Name : " << getfullname();
+        cout << "\nEmail : " << getemail();
+        cout << "\nPhone : " << getphone();
+        cout << "\nTitle : " << gettitle();
+        cout << "\nDepartment: " << getdepartment();
+        cout << "\nSalary : " << getsalary();
+        cout << "\n___________________\n";
+    }
+};
+class developer : public clsemployee
+{
+    private:
+        string programmingLanguage;
+    public:
+        developer(int id, const string& first, const string& last, const string& mail, const string& mobile ,string  dep,string titl,float sal,string lang) :
+        clsemployee(id, first, last, mail, mobile ,dep,titl,sal)
+        {
+            programmingLanguage=lang;
+        }
+        void setprogrammingLanguage(const string& lang)
+        {
+            programmingLanguage = lang;
+        }
+        string getprogrammingLanguage() const
+        {
+            return programmingLanguage;
+        }
+        void print() const
+        {
+            cout << "\nInfo:";
+            cout << "\n___________________";
+            cout << "\nID : " << getID();
+            cout << "\nFirstName : " << getfirstname();
+            cout << "\nLastName : " <<getlastname();
+            cout << "\nFull Name : " << getfullname();
+            cout << "\nEmail : " << getemail();
+            cout << "\nPhone : " << getphone();
+            cout << "\nTitle : " << gettitle();
+            cout << "\nDepartment: " << getdepartment();
+            cout << "\nSalary : " << getsalary();
+            cout << "\nProgramming Language : " <<getprogrammingLanguage();
+            cout << "\n___________________\n";
+            cout << "\n___________________\n";
+        }
+        
+};
+int main()
+{
+    developer dev(10, "Zainab", "Yahya", "zainbyahya&&77@gmail.com", "0110000000", "Engineering", "Software Engineer", 750000, "C++");
+    dev.print();
+    
+    dev.sendSMS("Reminder: Team meeting at 3 PM today.");
+}
